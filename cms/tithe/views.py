@@ -34,12 +34,12 @@ class TitheDetailView(APIView):
     
     def get(self, request, pk):
         tithe = self.get_tithe(pk)
-        serializer = self.serializer_class(tithe)
+        serializer = TitheSerializer(tithe)
         return Response(serializer.data)
     
     def put(self, request, pk):
         tithe = self.get_tithe(pk)
-        serializer = self.serializer_class(tithe, data=request.data)
+        serializer = TitheSerializer(tithe, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

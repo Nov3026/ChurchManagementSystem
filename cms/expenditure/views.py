@@ -34,12 +34,12 @@ class ExpenseTypeDetailView(APIView):
         
     def get(self, request,pk):
         expense = self.get_expense(pk)
-        serializer = self.serializer_class(expense)
+        serializer = ExpenseTypeSerializer(expense)
         return Response(serializer.data)
     
     def put(self,request,pk):
         expense = self.get_expense(pk)
-        serializer = self.serializer_class(expense, data=request.data)
+        serializer = ExpenseTypeSerializer(expense, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -79,12 +79,12 @@ class ExpenditureDetailView(APIView):
         
     def get(self, request,pk):
         expense = self.get_expense(pk)
-        serializer = self.serializer_class(expense)
+        serializer = ExpenditureSerializer(expense)
         return Response(serializer.data)
     
     def put(self,request,pk):
         expense = self.get_expense(pk)
-        serializer = self.serializer_class(expense, data=request.data)
+        serializer = ExpenditureSerializer(expense, data=request.data)
 
         if serializer.is_valid():
             serializer.save()

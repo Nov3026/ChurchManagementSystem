@@ -33,3 +33,9 @@ choir_attendance_status_choices =(
     ('excuse', 'Excuse'),
 )
 
+offering_choices = (
+    ('regular_offering', 'Regular Offering'),
+    ('mission_offering', 'Mission Offering'),
+    ('donation', 'Donation'),
+    ('other', 'Other'),
+)

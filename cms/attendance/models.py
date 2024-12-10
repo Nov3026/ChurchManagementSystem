@@ -33,7 +33,7 @@ class ChurchServiceAttendance(models.Model):
 
 class ChoirAttendance(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='choir_member')
-    activities = models.ForeignKey(Activity, on_delete=models.CASCADE, related_name='activity')
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, related_name='activity')
     day = models.CharField(max_length=20, choices=days_choices, default=None)
     status = models.CharField(max_length=20, choices=choir_attendance_status_choices, default='present')
     created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='choir_attendance', null=True, blank=True)

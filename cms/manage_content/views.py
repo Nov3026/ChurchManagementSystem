@@ -34,12 +34,12 @@ class ContentTypeDetailView(APIView):
         
     def get(self, request,pk):
         content_type = self.get_content_type(pk)
-        serializer = self.serializer_class(content_type)
+        serializer = ContentTypeSerializer(content_type)
         return Response(serializer.data)
     
     def put(self,request,pk):
         expense = self.get_content_type(pk)
-        serializer = self.serializer_class(expense, data=request.data)
+        serializer = ContentTypeSerializer(expense, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -79,12 +79,12 @@ class ContentDetailView(APIView):
         
     def get(self, request,pk):
         content = self.get_content(pk)
-        serializer = self.serializer_class(content)
+        serializer = ContentSerializer(content)
         return Response(serializer.data)
     
     def put(self,request,pk):
         content = self.get_content(pk)
-        serializer = self.serializer_class(content, data=request.data)
+        serializer = ContentSerializer(content, data=request.data)
 
         if serializer.is_valid():
             serializer.save()

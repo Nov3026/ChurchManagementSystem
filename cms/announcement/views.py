@@ -35,12 +35,12 @@ class AnnouncementDetailView(APIView):
         
     def get(self, request, pk):
         ann = self.get_announcement(pk)
-        serializer = self.serializer_class(ann)
+        serializer = AnnouncementSerializer(ann)
         return Response(serializer.data)
     
     def put(self, request, pk):
         ann = self.get_announcement(pk)
-        serializer = self.serializer_class(ann, data=request.data)
+        serializer = AnnouncementSerializer(ann, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

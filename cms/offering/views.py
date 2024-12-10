@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .serializers import MemberDueSerializer
-from .models import MemberDue
+from .serializers import OfferingSerializer
+from .models import Offering
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
@@ -8,39 +8,39 @@ from rest_framework import status
 
 
 # Create your views here.
-class MemberDueLIstView(APIView):
-    serializer_class = MemberDueSerializer
+class OfferingLIstView(APIView):
+    serializer_class = OfferingSerializer
 
     def get(self, request):
-        due = MemberDue.objects.all()
-        serializer = MemberDueSerializer(due, many=True)
+        offerings = Offering.objects.all()
+        serializer = OfferingSerializer(offerings, many=True)
         return Response(serializer.data)
     
     def post(self, request):
-        serializer = MemberDueSerializer(data=request.data)
+        serializer = OfferingSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-class MemberDueDetailView(APIView):
-    serializer_class = MemberDueSerializer
+class OfferingDetailView(APIView):
+    serializer_class = OfferingSerializer
 
-    def get_due(self,pk):
+    def get_offering(self,pk):
         try:
-            return MemberDue.objects.get(pk=pk)
-        except MemberDue.DoesNotExist:
+            return Offering.objects.get(pk=pk)
+        except Offering.DoesNotExist:
             raise Http404
     
     def get(self,request,pk):
-        due = self.get_due(pk)
-        serializer = MemberDueSerializer(due)
+        offering = self.get_offering(pk)
+        serializer = OfferingSerializer(offering)
         return Response(serializer.data)
     
     def put(self,request,pk):
-        due = self.get_due(pk=pk)
-        serializer = MemberDueSerializer(due, data=request.data)
+        offering = self.get_offering(pk)
+        serializer = OfferingSerializer(offering, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -48,8 +48,8 @@ class MemberDueDetailView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self, request,pk):
-        due = self.get_due(pk)
-        due.delete()
+        offering = self.get_offering(pk)
+        offering.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'attendance',
     'custom_user',
     'custom_group',
+    'offering',
     
 ]
 

@@ -6,7 +6,7 @@ admin.register(ChurchServiceAttendance)
 
 @admin.register(ChoirAttendance)
 class ChoirAttendanceAdmin(admin.ModelAdmin):
-    list_display = ('member','activities','day','status','created_by','created_on','modified_on')
+    list_display = ('member','activity','day','status','created_by','created_on','modified_on')
     search_fields = ('member__first_name','member__last_name')
-    list_filter = ('activities','status')
+    list_filter = ('activity','status')
 

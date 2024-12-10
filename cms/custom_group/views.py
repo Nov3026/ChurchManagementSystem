@@ -18,7 +18,7 @@ class GroupListView(APIView):
         return Response(serializer.data)
     
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = GroupSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -35,12 +35,12 @@ class GroupDetailView(APIView):
         
     def get(self, request, pk):
         group = self.get_group(pk)
-        serializer = self.serializer_class(group)
+        serializer = GroupSerializer(group)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def put(self, request, pk):
         group = self.get_group(pk)
-        serializer = self.serializer_class(group, data=request.data)
+        serializer = GroupSerializer(group, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -60,7 +60,7 @@ class GroupExtensionListView(APIView):
         return Response(serializer.data)
     
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = GroupExtensionSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -77,12 +77,12 @@ class GroupExtensionDetailView(APIView):
         
     def get(self, request, pk):
         group_extension = self.get_group_extension(pk)
-        serializer = self.serializer_class(group_extension)
+        serializer = GroupExtensionSerializer(group_extension)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def put(self, request, pk):
         group_extension = self.get_group_extension(pk)
-        serializer = self.serializer_class(group_extension, data=request.data)
+        serializer = GroupExtensionSerializer(group_extension, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

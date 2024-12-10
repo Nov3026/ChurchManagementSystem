@@ -34,12 +34,12 @@ class MemberDetailView(APIView):
     
     def get(self,request,pk):
         member = self.get_member(pk)
-        serializer = self.serializer_class(member)
+        serializer = MemberSerializer(member)
         return Response(serializer.data)
     
     def put(self,request,pk):
         member = self.get_member(pk=pk)
-        serializer = self.serializer_class(member, data=request.data)
+        serializer = MemberSerializer(member, data=request.data)
 
         if serializer.is_valid():
             serializer.save()

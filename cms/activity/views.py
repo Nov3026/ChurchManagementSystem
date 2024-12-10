@@ -33,12 +33,12 @@ class ActivityDetailView(APIView):
     
     def get(self,request,pk):
         activity = self.get_activity(pk)
-        serializer = self.serializer_class(activity)
+        serializer = ActivitySerializer(activity)
         return Response(serializer.data)
     
     def put(self,request,pk):
         activity = self.get_activity(pk)
-        serializer = self.serializer_class(activity,data=request.data)
+        serializer = ActivitySerializer(activity,data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
